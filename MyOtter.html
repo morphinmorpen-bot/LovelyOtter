@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>A Little Note For My Lovely Otter</title>
+  <style>
+    :root{
+      --card:#ffffff;
+      --accent:#ff93c9;
+      --accent2:#ffd27f;
+      --accent3:#b8e0ff;
+      --muted:#5b4a5a;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:linear-gradient(180deg,#fff5fa,#ffeefc 45%,#f3faff);color:var(--muted)}
+    .wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}
+    .card{max-width:920px;width:100%;background:var(--card);border-radius:22px;box-shadow:0 24px 48px rgba(40,20,60,0.08);padding:34px;position:relative;overflow:hidden}
+    header{text-align:center;margin-bottom:12px}
+    .logo{font-size:24px;font-weight:700;background:linear-gradient(90deg,#ff8fb8,#e39cff);-webkit-background-clip:text;color:transparent;letter-spacing:0.5px}
+    p.lead{margin:10px auto 22px;color:#6b4f63;max-width:600px;line-height:1.6;font-size:17px}
+
+    .stage{display:none}
+    .stage.active{display:block}
+
+    /* NEW refined heart button */
+    .startHeart{
+      font-size:70px;
+      cursor:pointer;
+      animation:pulse 1.6s infinite ease-in-out;
+      transition:transform .3s;
+      filter:drop-shadow(0 6px 14px rgba(255,100,150,0.35));
+    }
+    .startHeart:hover{transform:scale(1.18)}
+
+    @keyframes pulse{0%{transform:scale(1)}50%{transform:scale(1.14)}100%{transform:scale(1)}}
+
+    /* Cleaner button styling */
+    .menu-btn{
+      padding:14px 18px;
+      border:none;
+      border-radius:14px;
+      font-size:18px;
+      cursor:pointer;
+      transition:transform .2s, box-shadow .2s;
+    }
+    .menu-btn:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 18px rgba(0,0,0,0.08);
+    }
+
+    .sparkle-heart{
+      position:absolute;
+      top:50%;left:50%;
+      transform:translate(-50%,-50%);
+      font-size:22px;
+      opacity:0;
+      animation: sparkle 1.4s ease-out forwards;
+      pointer-events:none;
+    }
+    @keyframes sparkle{
+      0%{opacity:0;transform:translate(-50%,-50%) scale(0.6);} 
+      40%{opacity:1;transform:translate(-50%,-70%) scale(1.2);} 
+      100%{opacity:0;transform:translate(-50%,-110%) scale(0.8);} 
+    }
+
+    /* Pulsing floating hearts */
+    .float-heart{
+      position:absolute;
+      font-size:1.4rem;
+      animation:floatUp 4s ease-in infinite;
+      opacity:0.9;
+      pointer-events:none;
+    }
+    @keyframes floatUp{
+      0%{transform:translateY(20px) scale(0.8);opacity:0;} 
+      20%{opacity:1;} 
+      100%{transform:translateY(-140px) scale(1.4);opacity:0;} 
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <header>
+        <div class="logo">A small note I made just for my lovely Otter</div>
+      </header>
+
+      <main>
+        <p class="lead" id="introLead">
+          Okay, I’ll be honest: I have no idea how to start this properly. I’m just hoping whatever I write here makes you smile.
+        </p>
+
+        <!-- STAGE 1 — refined & aesthetic -->
+        <section id="stage1" class="stage active center" style="text-align:center; padding:22px 0 26px; position:relative; overflow:hidden;">
+  <div id="heartConfettiContainer"></div>
+  <div style="position:relative;display:inline-block;">
+    <div class="startHeart" id="openHeart">💗</div>
+  </div>
+  <p style="margin-top:14px;font-size:15px;color:#7a6174;">Tap the heart and let the story unfold✨/
+</section>
+
+<script>
+// HEART CONFETTI EFFECT (Stage 1)
+function heartConfetti(){
+  const c = document.createElement('div');
+  c.className = 'heart-confetti';
+  const shapes = ['💗','💖','💕','💓'];
+  c.innerHTML = shapes[Math.floor(Math.random()*shapes.length)];
+  c.style.left = Math.random()*100 + 'vw';
+  c.style.fontSize = (1 + Math.random()*1.4) + 'rem';
+  document.getElementById('heartConfettiContainer').appendChild(c);
+  setTimeout(()=>c.remove(),3000);
+}
+setInterval(()=>{
+  if(document.querySelector('#stage1.active')) heartConfetti();
+},220);
+</script>
+
+        <!-- STAGE 2 — Moments removed -->
+        <section id="stage2" class="stage center">
+          <div style="text-align:center;padding:20px;color:#5b4a5a;">
+            <h2 style="font-size:26px;margin-bottom:20px;background:linear-gradient(90deg,#ff8fb8,#e39cff);-webkit-background-clip:text;color:transparent;">Choose What You Want to Open</h2>
+
+            <div style="display:flex;flex-direction:column;gap:16px;max-width:420px;margin:0 auto;">
+              <button onclick="showStage(21)" class="menu-btn" style="background:#ffb3d9;">💌 Love Letter</button>
+              <button onclick="showStage(22)" class="menu-btn" style="background:#ffe08a;">🎀 Poem</button>
+              <button onclick="showStage(23)" class="menu-btn" style="background:#bfe5ff;">🎧 Song Gift</button>
+              <!-- MOMENTS REMOVED as requested -->
+            </div>
+          </div>
+        </section>
+
+        <!-- STAGE 21: LOVE LETTER CONFESSION -->
+<section id="stage21" class="stage center" style="padding:24px;">
+  <h2>Love Letter 💌</h2>
+  <div style="max-width:700px;margin:auto;line-height:1.7;text-align:left;color:#5b4556;max-height:70vh;overflow-y:auto;padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fff7fb);box-shadow:0 8px 20px rgba(0,0,0,0.04);">
+    <p style="margin:0">
+Dear Otter…<br><br>
+Aku nggak tahu kapan tepatnya semuanya mulai berubah. Yang aku ingat cuma satu: tiap kali aku lihat kamu — even just a glimpse — ada sesuatu yang bergerak pelan di dada.<br>
+Sebuah rasa hangat lembut tumbuh dari tempat yang bahkan aku tak pernah tahu ada sebelumnya.<br><br>
+Kamu itu…<br>
+Indah dengan cara yang sulit dijelaskan.<br>
+Bukan hanya wajahmu, bukan hanya caramu tertawa—tapi hati lembutmu, perhatian kecilmu, dan cara kamu hadir tanpa berusaha apa pun. Ada ketenangan dalam caramu hadir yang selalu berhasil menenangkanku, bahkan di hari-hari ketika aku nyaris runtuh.<br>
+You’re soft, sweet, and a little bit adorable in a way that makes me want to hold your face and whisper, “you have no idea what you do to me, do you?”<br>
+Dan dari semua yang tumbuh tanpa aku sadari itu, muncul satu keinginan sederhana namun besar:<br>
+<strong>I want to be someone for you.</strong><br>
+Aku ingin jadi tempat kamu bersandar; punggung yang kamu percayai, rumah kecil yang bisa kamu datangi kapan pun dunia terasa terlalu bising.<br><br>
+Aku ingin menjadi orang yang merapikan kancing belakang bajumu sambil membisikkan, “Sudah cantik,” sebelum kamu menghadapi dunia.<br>
+Orang yang lengannya kau sentuh tanpa sadar saat kau gugup, dan aku akan mengangguk, memberi tanda bahwa aku selalu ada di sisimu.<br>
+Orang yang tahu cara kamu tersenyum ketika masakanmu akhirnya “pas”—orang yang kamu suapi sedikit kuah panas sambil bertanya, “Gimana?”
+Dan aku bisa jawab jujur:<br><br>
+<strong>Segala hal dari kamu selalu terasa enak.</strong><br><br>
+Aku ingin menjadi orang yang kamu percaya.<br>
+Orang yang mencintaimu dari hal-hal paling sederhana sampai hal-hal yang membuat kita sendiri bingung betapa besar rasanya. Kita tidak harus sempurna.
+Kita hanya perlu saling memilih—pelan,lembut, tapi konsisten.<br><br>
+Letakkan kepalamu di pundakku, atau di pangkuanku, atau di mana pun yang membuatmu merasa aman.
+Istirahatlah. Rebahlah.
+Jatuhlah tanpa takut apa pun.<br><br>
+<strong>Aku akan menjagamu. Selalu.</strong><br><br>
+Dan aku ingin tahu segalanya tentangmu.
+Tentang masa kecilmu.
+Tentang luka-luka lamamu.
+Tentang alasanmu menangis, dan alasanmu tersenyum hari ini.
+Tentang cinta pertamamu, patah hati terbesarmu, dan momen-momen kecil yang membentukmu menjadi dirimu yang sekarang.<br><br>
+Aku ingin tahu bukan untuk menghakimi, tapi aku ingin tahu agar aku bisa lebih memahamimu.
+Aku ingin tahu agar aku bisa mencintaimu dengan cara yang paling tepat.
+Agar aku bisa menjadi tempatmu pulang, entah kamu sedang utuh atau patah.<br><br>
+Dan dari semua hal yang ingin aku jadi untukmu,
+ada satu hal yang paling ingin aku bisikkan—pelan, pasti, dan jujur:<br><br>
+<strong>Let me be that someone
+the one you come home to,
+in the quiet, warm way
+that makes your heart finally rest.</strong><br><br>
+Orang yang kamu pilih, kamu genggam, kamu sayangi—pelan, dalam, dan lama.<br>
+Orang yang kamu panggil “sayang” dengan suara paling lembutmu.<br><br>
+Aku ingin kamu.
+Bukan sebagai kemungkinan,
+bukan sebagai angan-angan,
+tapi sebagai seseorang yang benar-benar berdampingan denganku.<br><br>
+Jika kamu mengizinkan…<br>
+<strong>Mari mulai hari ini sebagai kita.</strong><br><br>
+No pressure, sweetheart.<br>
+Cuma… kalau kamu siap, aku ingin mencoba sesuatu yang manis sama kamu.<br>
+Sesuatu yang nyata, lembut, dan pelan —
+<strong>Something like us</strong><br>
+    </p>
+  </div>
+  <div style="text-align:center;margin-top:16px">
+    <button onclick="showStage(2)" style="padding:10px 18px;border:none;border-radius:12px;background:#ff93c9;color:white;cursor:pointer;">Back</button>
+  </div>
+</section>
+
+<!-- STAGE 22: POEM -->
+<section id="stage22" class="stage center" style="padding:24px;">
+  <h2>Poem — Untukmu yang Istimewa ✨</h2>
+  <div style="max-width:700px;margin:auto;line-height:1.8;text-align:left;color:#5b4556;max-height:70vh;overflow-y:auto;padding:18px;border-radius:12px;background:linear-gradient(180deg,#fff,#fffaf6);box-shadow:0 8px 20px rgba(0,0,0,0.04);font-style:italic;">
+    <p style="margin:0">
+Kamu datang seperti rintik hujan di musim panas—sejuk, tak menggebu, tapi menyegarkan setiap bagian yang kering.<br><br>
+There’s a softness in the way you move, a gentle gravity that pulls my scattered pieces close. Ketika kamu tersenyum, dunia terasa sedikit lebih ringan; ketika kamu bicara, setiap luka yang pernah kumiliki menutup pelan, seperti pintu yang akhirnya menemukan engselnya lagi.<br><br>
+You are the quiet that stitches up the noisy places inside me. Kamu menyembuhkan bukan dengan kata-kata besar, tapi dengan kehadiranmu yang sederhana—sebuah tawa kecil, sentuhan tangan yang singgah, atau hanya cara kamu menatap tanpa meminta apa-apa.<br><br>
+Aku pernah membawa beban—bayang-bayang yang berat. Tapi keberadaanmu memberi ruang untuk bernapas. You make the broken parts feel less broken; you make the tiny joys feel enormous.<br><br>
+Dalam malam yang sepi aku menulis namamu seperti doa—pelan, khusyuk, berharap ini bukan sekadar mimpi cepat berlalu. Karena kamu bukan hanya keindahan yang terlihat; kamu adalah kebaikan yang kuharap akan bertahan dalam waktu yang lama. You are special in ways words try to catch but fail, so I keep holding you in little sentences and quiet sighs.<br><br>
+Jadi terima kasih sudah datang, for being the warm that heals. For being the soft that loves without loudness. For being you—an unexpected remedy for an old ache.<br><br>
+</p>
+  </div>
+  <div style="text-align:center;margin-top:16px">
+    <button onclick="showStage(2)" style="padding:10px 18px;border:none;border-radius:12px;background:#ff93c9;color:white;cursor:pointer;">Back</button>
+  </div>
+</section>
+
+<!-- STAGE 23: SONG -->
+<section id="stage23" class="stage center" style="padding:24px;">
+  <h2>A Song That Feels Like You🎧</h2>
+  <div style="max-width:700px;margin:auto;line-height:1.6;text-align:left;color:#5b4556;">
+    <p>
+I picked this song for you because somehow it reminds me of you… sweet, addictive, and stuck in my head all day<br><br>
+<a href="https://open.spotify.com/track/66V6QeI1Y9PQO4J7p7JGJO?si=IqYWDPk4RNS0WW7BeFKG1w"target="_blank">Adira — Lebih Indah</a><br>
+<a href="https://open.spotify.com/track/2wrJq5XKLnmhRXHIAf9xBa?si=5IoCDZSKS8mlRpG0oa5o0g"target="_blank">Justin — 10.000 Hours</a><br>
+<a href="https://open.spotify.com/track/2UgCs0i0rNHUH2jKE5NZHE?si=VWliR4P9SCG62HTb7XT78Q"target="_blank">Andra & The Backbone — Sempurna<a/><br>
+<a href="https://open.spotify.com/track/2btKtacOXuMtC9WjcNRvAA?si=KhSmXREMQ8aTwaWK8UQBAQ"target="_blank">Lany — ILYSB</a>
+    </p>
+  </div>
+  <div style="text-align:center;margin-top:16px">
+    <button onclick="showStage(2)" style="padding:10px 18px;border:none;border-radius:12px;background:#ff93c9;color:white;cursor:pointer;">Back</button>
+  </div>
+</section>
+      </main>
+    </div>
+  </div>
+
+<script>
+  function showStage(n){
+    document.querySelectorAll('.stage').forEach(s=>s.classList.remove('active'));
+    const el=document.getElementById('stage'+n);
+    if(el) el.classList.add('active');
+
+    const intro=document.getElementById('introLead');
+    const header=document.querySelector('header');
+
+    if(intro) intro.style.display=(n===1)?'block':'none';
+    if(header) header.style.display=(n===1)?'block':'none';
+
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  document.getElementById('openHeart').addEventListener('click',()=>showStage(2));
+</script>
+
+<script>
+// Sweet pastel sparkle for Stage 2
+function stage2Sparkles(){
+  const colors=['💗','💖','✨','🌸'];
+  const sp=document.createElement('div');
+  sp.className='stage2-spark';
+  sp.innerHTML=colors[Math.floor(Math.random()*colors.length)];
+  sp.style.left=Math.random()*100+'vw';
+  sp.style.top=(10+Math.random()*60)+'vh';
+  sp.style.position='fixed';
+  sp.style.fontSize=(0.9+Math.random()*1.4)+'rem';
+  sp.style.opacity='0';
+  sp.style.animation='s2 1.6s ease-out forwards';
+  document.body.appendChild(sp);
+  setTimeout(()=>sp.remove(),1700);
+}
+setInterval(()=>{
+  const active=document.querySelector('#stage2.active');
+  if(active) stage2Sparkles();
+},650);
+
+// Soft glimmer for Stage 3
+function stage3Sparkles(){
+  const gl=document.createElement('div');
+  gl.className='stage3-glimmer';
+  gl.innerHTML='✨';
+  gl.style.left=(20+Math.random()*60)+'vw';
+  gl.style.top=(20+Math.random()*60)+'vh';
+  gl.style.position='fixed';
+  gl.style.fontSize='1.2rem';
+  gl.style.opacity='0';
+  gl.style.animation='s3 1.8s ease-out forwards';
+  document.body.appendChild(gl);
+  setTimeout(()=>gl.remove(),1900);
+}
+setInterval(()=>{
+  const s3Active = document.querySelector('#stage21.active, #stage22.active, #stage23.active');
+  if(s3Active) stage3Sparkles();
+},900);
+</script>
+
+<style>
+@keyframes s2{
+  0%{transform:translateY(10px) scale(0.6);opacity:0;} 
+  40%{opacity:1;} 
+  100%{transform:translateY(-20px) scale(1.3);opacity:0;} 
+}
+
+@keyframes s3{
+  0%{opacity:0;transform:scale(0.5);} 
+  30%{opacity:1;transform:scale(1.2);} 
+  100%{opacity:0;transform:scale(0.7);} 
+}
+
+</style>
+<script>
+
+/* === LOVE SPARKLE WITH SOFT GLOW — for Love Letter === */
+function loveLetterSparkle(){
+  const sp = document.createElement('div');
+  sp.className = 'love-spark-soft';
+  sp.innerHTML = '💖';
+  sp.style.left = (20 + Math.random()*60) + 'vw';
+  sp.style.top = (20 + Math.random()*60) + 'vh';
+  document.body.appendChild(sp);
+  setTimeout(()=>sp.remove(),2000);
+}
+setInterval(()=>{
+  const active = document.querySelector('#stage21.active');
+  if(active) loveLetterSparkle();
+},800);
+
+/* === PETAL RAIN + GLOWING DUST — for Poem === */
+function poemPetal(){
+  const p = document.createElement('div');
+  p.className = 'petal-glow';
+  const petals = ['🌸','💮','🌺'];
+  p.innerHTML = petals[Math.floor(Math.random()*petals.length)];
+  p.style.left = Math.random()*100 + 'vw';
+  p.style.fontSize = (1 + Math.random()) + 'rem';
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),5000);
+}
+setInterval(()=>{
+  const activeP = document.querySelector('#stage22.active');
+  if(activeP) poemPetal();
+},600);
+
+/* === PULSING HEART + MUSIC ICON — for Song === */
+function songPulse(){
+  const s = document.createElement('div');
+  s.className = 'song-heart';
+  const icons = ['💗','🎵','🎶','💕'];
+  s.innerHTML = icons[Math.floor(Math.random()*icons.length)];
+  s.style.left = (10 + Math.random()*80)+'vw';
+  s.style.top = (10 + Math.random()*70)+'vh';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),2500);
+}
+setInterval(()=>{
+  const activeS = document.querySelector('#stage23.active');
+  if(activeS) songPulse();
+},900);
+</script>
+
+<style>
+/* Stage 1 Confetti */
+.heart-confetti{
+  position:fixed;
+  top:-10px;
+  animation:fallConfetti 3s linear forwards;
+}
+@keyframes fallConfetti{
+  0%{transform:translateY(0) rotate(0deg); opacity:1;}
+  100%{transform:translateY(120vh) rotate(180deg); opacity:0;}
+}
+
+/* Love Sparkle Soft Glow */
+.love-spark-soft{
+  position:fixed;
+  font-size:1.6rem;
+  opacity:0;
+  animation:softGlow 2s ease-out forwards;
+  filter:drop-shadow(0 0 14px rgba(255,140,180,0.6));
+}
+@keyframes softGlow{
+  0%{opacity:0; transform:scale(0.5);} 
+  40%{opacity:1; transform:scale(1.3);} 
+  100%{opacity:0; transform:scale(0.8);} 
+}
+
+/* Poem Petal Rain + Glowing Dust */
+.petal-glow{
+  position:fixed;
+  top:-20px;
+  animation:petalFall 5s ease-in forwards;
+  filter:drop-shadow(0 0 10px rgba(255,200,255,0.7));
+}
+@keyframes petalFall{
+  0%{transform:translateY(0) rotate(0deg); opacity:0.8;} 
+  50%{opacity:1;} 
+  100%{transform:translateY(120vh) rotate(120deg); opacity:0;} 
+}
+
+/* Song pulsing music hearts */
+.song-heart{
+  position:fixed;
+  font-size:1.8rem;
+  opacity:0;
+  animation:pulseMusic 2.5s ease-out forwards;
+  filter:drop-shadow(0 0 14px rgba(255,160,200,0.7));
+}
+@keyframes pulseMusic{
+  0%{opacity:0; transform:scale(0.4);} 
+  30%{opacity:1; transform:scale(1.4);} 
+  70%{opacity:1; transform:scale(1);} 
+  100%{opacity:0; transform:scale(0.8);} 
+}
+</style>
+
+</body>
+</html>
